@@ -106,13 +106,13 @@ const Ground = () => {
       position={[0, -5, 0]}
       scale={100}
     >
-      {(Material, props) => (
+      {(Material, props: any) => (
         <Material
           color="#a0a0a0"
           metalness={0.4}
           roughnessMap={floor}
           normalMap={normal}
-          normalScale={[2, 2]}
+          normalScale={new THREE.Vector2(2, 2)}
           {...props}
         />
       )}
