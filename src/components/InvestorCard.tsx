@@ -6,7 +6,7 @@ interface IInvestorCardProps {
 
 export const InvestorCard: React.FC<IInvestorCardProps> = (props) => {
   return (
-    <div className="p-2 shadow-lg bg-gray-700/5 rounded-lg backdrop-blur-sm flex items-center justify-center border border-gray-800">
+    <div className="p-5 aspect-square flex items-center justify-center border border-white min-w-24 [&:nth-child(1)]:col-start-2 [&:nth-child(2)]:col-start-1 [&:nth-child(7)]:col-start-2">
       <Image
         src={props.imageUrl}
         width={200}

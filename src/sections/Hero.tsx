@@ -1,8 +1,13 @@
 import { CameraShake, Cloud, Reflector, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
+import Typewriter from "typewriter-effect";
+
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
+
+import hasCharAnim from "@/lib/utils/animation/hasCharAnim";
+import hasTextRevealAnim from "@/lib/utils/animation/hasTextRevealAnim";
 
 interface GltfModelProps {
   modelPath: string;
@@ -11,7 +16,7 @@ interface GltfModelProps {
   set?: any;
 }
 
-function Rig1() {
+function CustomCameraShake() {
   const [vec] = useState(() => new THREE.Vector3());
   const { camera, mouse } = useThree();
   useFrame(() => camera.position.lerp(vec.set(mouse.x * 2, 1, 30), 0));
@@ -86,8 +91,8 @@ const GltfModel = ({ modelPath, scale = 40, position = [0, 0, 0] }: GltfModelPro
 
 const Ground = () => {
   const [floor, normal] = useTexture([
-    "/SurfaceImperfections003_1K_var1.jpg",
-    "/SurfaceImperfections003_1K_Normal.jpg",
+    "/model/textures/SurfaceImperfections003_1K_var1.jpg",
+    "/model/textures/SurfaceImperfections003_1K_Normal.jpg",
   ]);
   return (
     <Reflector
@@ -116,8 +121,16 @@ const Ground = () => {
 };
 
 const HeroSection = () => {
+  const textRevealAnim = useRef<any>();
+  const titlePosition = useRef<any>();
+
+  useEffect(() => {
+    hasTextRevealAnim(textRevealAnim.current);
+    hasCharAnim(titlePosition.current);
+  }, []);
+
   return (
-    <section className="">
+    <section className="relative">
       <div className="h-screen">
         <Canvas
           shadows
@@ -139,21 +152,30 @@ const HeroSection = () => {
               <Rig>
                 <GltfModel modelPath="./model/gpu.glb" scale={1} position={[0, 0, 0]} />
               </Rig>
-              <Rig1 />
+              <CustomCameraShake />
               <Ground />
             </group>
           </Suspense>
         </Canvas>
       </div>
       <div className="absolute inset-0 pointer-events-none bg-radialGradient">
-        <div className="container flex items-end py-10 h-full w-full">
+        <div className="container flex items-center py-10 h-full w-full">
           <div className="max-w-[800px] text-center mx-auto">
-            <h1 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-wider">
-              Financialize AI
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-500">
+            <p className="text-base sm:text-lg md:text-xl text-gray-500" ref={textRevealAnim}>
               Welcome to Compute Labs: Your Gateway to AI Investments
             </p>
+            <h1
+              className="text-xl sm:text-2xl md:text-6xl font-semibold tracking-wider mt-10"
+              ref={titlePosition}
+            >
+              <Typewriter
+                options={{
+                  strings: ["The AI-Fi ecosystem", "Financialize AI"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </h1>
           </div>
         </div>
       </div>

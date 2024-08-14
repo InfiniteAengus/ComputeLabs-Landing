@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 const manrope = Montserrat({ subsets: ["latin"] });
 
@@ -18,11 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={manrope.className}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <body className={manrope.className}>{children}</body>
     </html>
   );
 }

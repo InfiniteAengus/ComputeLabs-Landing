@@ -6,6 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/layout/**/*.{js,ts,jsx,tsx,mdx}",
   ],
 
   theme: {
@@ -15,6 +16,7 @@ const config: Config = {
       },
       backgroundImage: {
         radialGradient: "radial-gradient(circle at 50%, #00000000, #000 70%,  #000)",
+        "custom-gradient": "linear-gradient(to right, rgb(255, 255, 255) 50%, rgb(66, 60, 60) 50%)",
       },
     },
   },

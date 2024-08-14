@@ -22,3 +22,52 @@ body {
 .container {
   @apply mx-auto;
 }
+
+.cursor1 {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.15s;
+  z-index: 999;
+  mix-blend-mode: difference;
+}
+
+.cursor2 {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.2s;
+  z-index: 999;
+  mix-blend-mode: difference;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(73, 73, 73, 0.6);
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(110, 110, 110, 0.6);
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
